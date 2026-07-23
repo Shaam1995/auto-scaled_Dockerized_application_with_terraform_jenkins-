@@ -1,0 +1,77 @@
+# requirements.txt
+# Spring PetClinic - Environment & Tooling Requirements
+# (Java Spring Boot project - not a Python project, so this lists
+# system tools + Java dependencies instead of pip packages)
+
+## ---------------------------------------------------
+## 1. CORE BUILD REQUIREMENTS
+## ---------------------------------------------------
+Java JDK           >= 17          (full JDK, not JRE)
+Maven              (or use bundled ./mvnw wrapper - no install needed)
+Gradle             (or use bundled ./gradlew wrapper - no install needed)
+Git                (command line tool)
+
+## ---------------------------------------------------
+## 2. CONTAINERIZATION
+## ---------------------------------------------------
+Docker Engine      >= 20.x
+Docker Compose     >= 2.x
+
+## ---------------------------------------------------
+## 3. DATABASE (choose profile as needed)
+## ---------------------------------------------------
+H2                 (in-memory, default - no install needed)
+MySQL              9.7            (optional, profile=mysql)
+PostgreSQL         18.4           (optional, profile=postgres)
+
+## ---------------------------------------------------
+## 4. DEVOPS / CI-CD TOOLCHAIN (for your pipeline project)
+## ---------------------------------------------------
+Terraform          >= 1.6
+AWS CLI            >= 2.x
+Jenkins            (LTS)
+kubectl            (if deploying to EKS)
+eksctl             (if provisioning EKS)
+Ansible            (if used for config management)
+
+## ---------------------------------------------------
+## 5. KEY JAVA/MAVEN DEPENDENCIES (from pom.xml)
+## ---------------------------------------------------
+org.springframework.boot:spring-boot-starter-parent:4.1.0
+org.springframework.boot:spring-boot-starter-actuator
+org.springframework.boot:spring-boot-starter-cache
+org.springframework.boot:spring-boot-starter-data-jpa
+org.springframework.boot:spring-boot-starter-thymeleaf
+org.springframework.boot:spring-boot-starter-validation
+org.springframework.boot:spring-boot-starter-webmvc
+org.springframework.boot:spring-boot-devtools (optional)
+com.h2database:h2 (runtime)
+com.github.ben-manes.caffeine:caffeine (runtime)
+com.mysql:mysql-connector-j (runtime)
+org.postgresql:postgresql (runtime)
+org.webjars.npm:bootstrap:5.3.8 (runtime)
+org.webjars.npm:font-awesome:4.7.0 (runtime)
+org.webjars:webjars-locator-lite:1.1.3 (runtime)
+jakarta.xml.bind:jakarta.xml.bind-api
+javax.cache:cache-api
+
+## Test-scope dependencies
+org.springframework.boot:spring-boot-starter-data-jpa-test
+org.springframework.boot:spring-boot-starter-restclient-test
+org.springframework.boot:spring-boot-starter-thymeleaf-test
+org.springframework.boot:spring-boot-starter-validation-test
+org.springframework.boot:spring-boot-starter-webmvc-test
+org.springframework.boot:spring-boot-starter-actuator-test
+org.springframework.boot:spring-boot-starter-cache-test
+org.springframework.boot:spring-boot-testcontainers
+org.springframework.boot:spring-boot-docker-compose
+org.testcontainers:testcontainers-junit-jupiter
+org.testcontainers:testcontainers-mysql
+
+## ---------------------------------------------------
+## NOTES
+## ---------------------------------------------------
+# - Java version is enforced by the build (maven-enforcer-plugin): min JDK 17.
+# - Use ./mvnw or ./gradlew wrappers so you don't need Maven/Gradle installed locally.
+# - Full dependency list is always authoritative in pom.xml / build.gradle -
+#   this file is a human-readable summary for setup/reference.
